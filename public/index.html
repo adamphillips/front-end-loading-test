@@ -1,0 +1,32 @@
+<html>
+<head>
+  <link rel="stylesheet" href="css/a-large-stylesheet.css" />
+  <body>
+    <div class="content">
+      <h1>JS load event behaviour test</h1>
+      <p>This is a test page to allow inspection of the different load events
+      and how they affect interactivity</p>
+      <o>At different stages in the load, events are logged to both the screen
+      and the console. You will want to open the developer tools before starting
+      the test in order to see the events that fire before the first paint</p>
+      <p>In order to make it easier to see when the page becomes interactive, an
+      artificial sleep can be inserted during the handling of each event.<p>
+      <p>
+        Two ways of checking for interactivity are:<br />
+        <ul>
+          <li>Mouse over the header - this will turn blue once css pseudo elements are working. Try this on the header above</li>
+          <li>Scrolling the page</li>
+        </ul>
+      </p>
+      <p>To run the test, enter the sleep time below and click <em>Run test</em></p>
+      <form action="test.html" method="get">
+        <p>
+          <label for="sleepTime">Sleep for</label>
+          <input name="sleepTime" value="2000" size="5" />ms
+        </p>
+
+        <button type="submit">Run test</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+  <link rel="stylesheet" href="css/a-large-stylesheet.css" />
+  <script>
+  function getQueryParam(name) {
+    var match = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
+
+  var sleepTime = Number(getQueryParam('sleepTime'));
+
+  function sleep() {
+    if (!sleepTime) return;
+    var start = new Date().getTime();
+    while(true) {
+      if ((new Date().getTime() - start) > sleepTime){
+        break;
+      }
+    }
+  }
+
+  function log(message, colour) {
+    var eventLog = document.getElementById('event-log');
+    try {
+      eventLog.insertAdjacentHTML('beforeend', '<p class="message ' + colour + '">' + message + '</div>');
+    } catch (error) {
+      console.log("ERROR: " + error.message);
+    }
+    console.log(message)
+  }
+
+  function handleDOMContentLoaded(event) {
+    log('starting DOMContentLoaded handler', 'green');
+    sleep();
+    log('finished DOMContentLoaded handler', 'pink');
+  }
+
+  function handleLoad(event) {
+    log('starting load handler', 'green');
+    sleep();
+    log('finished load handler', 'pink');
+  }
+
+  document.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
+  window.addEventListener("load", handleLoad);
+  </script>
+  <script src="js/a-standard-script.js"></script>
+  <script defer src="js/a-deferred-script.js"></script>
+</head>
+<body>
+  <h1>Load order test page</h1>
+  <div id="event-log">
+  </div>
+  <div class="a-large-element">
+    <img src="images/a-large-image-1.png" />
+    <img src="images/a-large-image-2.png" />
+    <img src="images/a-large-image-3.png" />
+    <img src="images/a-large-image-4.png" />
+    <img src="images/a-large-image-5.png" />
+  </div>
+  <script>
+  function inlineJs() {
+    log('starting inline JS sleep', 'green')
+    sleep()
+    log('finished inline JS sleep', 'pink')
+  }
+
+  inlineJs();
+  </script>
+</body>
+</html>
